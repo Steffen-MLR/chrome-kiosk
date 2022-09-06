@@ -22,4 +22,8 @@ type Config struct {
 		UsernameField string `yaml:"fieldname-username" env:"KIOSK_GOAUTH_FIELD_USER" env-description:"Username html input name value"`
 		PasswordField string `yaml:"fieldname-password" env:"KIOSK_GOAUTH_FIELD_PASSWORD" env-description:"Password html input name value"`
 	} `yaml:"goauth"`
+	CUSTOM struct {
+		UsernameFieldC string `yaml:"fieldname-username-c" env:"KIOSK_CUSTOM_FIELD_USER" env-default:"user" env-description:"Username html input name value"`
+		PasswordFieldC string `yaml:"fieldname-password-c" env:"KIOSK_CUSTOM_FIELD_PASSWORD" env-default:"password" env-description:"Password html input name value"`
+	} `yaml:"custom"`
 }

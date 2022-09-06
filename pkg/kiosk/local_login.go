@@ -63,9 +63,9 @@ func GrafanaKioskLocal(cfg *Config) {
 
 	if err := chromedp.Run(taskCtx,
 		chromedp.Navigate(generatedURL),
-		chromedp.WaitVisible(`//input[@name="user"]`, chromedp.BySearch),
-		chromedp.SendKeys(`//input[@name="user"]`, cfg.Target.Username, chromedp.BySearch),
-		chromedp.SendKeys(`//input[@name="password"]`, cfg.Target.Password+kb.Enter, chromedp.BySearch),
+		chromedp.WaitVisible(`//input[@name="`+cfg.CUSTOM.UsernameFieldC+`"]`, chromedp.BySearch),
+		chromedp.SendKeys(`//input[@name="`+cfg.CUSTOM.UsernameFieldC+`"]`, cfg.Target.Username, chromedp.BySearch),
+		chromedp.SendKeys(`//input[@name="`+cfg.CUSTOM.PasswordFieldC+`"]`, cfg.Target.Password+kb.Enter, chromedp.BySearch),
 		chromedp.WaitVisible(`notinputPassword`, chromedp.ByID),
 	); err != nil {
 		panic(err)
