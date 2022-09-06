@@ -87,6 +87,10 @@ NOTE: Flags with parameters should use an "equals" (-autofit=true, -URL=https://
         username (default "guest")
   -window-position string
         Top Left Position of Kiosk (default "0,0")
+  -field-password-c
+        Custom Fieldname for the local login username (default "user")
+  -field-username-c
+        Custom Fieldname for the local login password (default "password")
 ```
 
 ### Using a configuration file
@@ -146,6 +150,10 @@ They can also be used instead of a configuration file.
         Username html input name value
   KIOSK_GOAUTH_FIELD_PASSWORD string
         Password html input name value
+  KIOSK_CUSTOM_FIELD_USER
+        Custom Fieldname for the local login username
+  KIOSK_CUSTOM_FIELD_PASSWORD
+        Custom Fieldname for the local login password
 ```
 
 ### Hosted Grafana using grafana.com authentication
@@ -180,6 +188,14 @@ If you are using a self-signed certificate, you can remove the certificate error
 
 ```bash
 ./bin/grafana-kiosk -URL=https://localhost:3000 -login-method=local -username=admin -password=admin -kiosk-mode=tv -ignore-certificate-errors
+```
+
+You can also use this tool for any Website, that uses a username/password combination to login. Go to you Website and find out the value of the name-Attribute on the login fields (e.g. with developer tools in your browser).
+
+```bash
+./bin/grafana-kiosk -URL=https://localhost:3000 -login-method=local -username=admin 
+     \ -password=admin -kiosk-mode=tv -ignore-certificate-errors 
+     \ -field-username-c=somefield -field-password-c=someotherfield
 ```
 
 ### Grafana Server with Anonymous access enabled

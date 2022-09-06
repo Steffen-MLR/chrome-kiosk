@@ -28,7 +28,9 @@ type Args struct {
 	Username                string
 	Password                string
 	UsernameField           string
+	UsernameFieldC          string
 	PasswordField           string
+	PasswordFieldC          string
 	WindowPosition          string
 }
 
@@ -52,6 +54,8 @@ func ProcessArgs(cfg interface{}) Args {
 	f.BoolVar(&a.OauthAutoLogin, "auto-login", false, "oauth_auto_login is enabled in grafana config")
 	f.StringVar(&a.UsernameField, "field-username", "username", "Fieldname for the username")
 	f.StringVar(&a.PasswordField, "field-password", "password", "Fieldname for the password")
+	f.StringVar(&a.UsernameFieldC, "field-username-c", "user", "Custom Fieldname for the local login username")
+	f.StringVar(&a.PasswordFieldC, "field-password-c", "password", "Custom Fieldname for the local login password")
 
 	fu := f.Usage
 	f.Usage = func() {
@@ -107,6 +111,9 @@ func summary(cfg *kiosk.Config) {
 	log.Println("GOAUTH.Fieldname Autologin:", cfg.GOAUTH.AutoLogin)
 	log.Println("GOAUTH.Fieldname Username:", cfg.GOAUTH.UsernameField)
 	log.Println("GOAUTH.Fieldname Password:", cfg.GOAUTH.PasswordField)
+	// custom
+	log.Println("CUSTOM.Fieldname Username:", cfg.CUSTOM.UsernameFieldC)
+	log.Println("CUSTOM.Fieldname Password:", cfg.CUSTOM.PasswordFieldC)
 }
 
 func main() {
@@ -144,7 +151,11 @@ func main() {
 		cfg.GOAUTH.AutoLogin = args.OauthAutoLogin
 		cfg.GOAUTH.UsernameField = args.UsernameField
 		cfg.GOAUTH.PasswordField = args.PasswordField
+		//
+		cfg.CUSTOM.PasswordFieldC = args.PasswordFieldC
+		cfg.CUSTOM.UsernameFieldC = args.UsernameFieldC
 	}
+
 	// make sure the url has content
 	if cfg.Target.URL == "" {
 		os.Exit(1)
