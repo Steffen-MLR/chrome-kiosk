@@ -1,18 +1,15 @@
 general:
   kiosk-mode: full
   autofit: true
-  lxde: true
-  lxde-home: /home/pi
 
 target:
-  login-method: anon
-  username: user
-  password: changeme
+  login-method: local
+  username: username
+  password: example-password
   playlist: false
-  URL: https://play.grafana.org
-  ignore-certificate-errors: false
+  URL: http://examplesitewithdifferentfieldnames
 
-goauth:
-  auto-login: false
-  fieldname-username: username
-  fieldname-password: password
+
+custom:
+  fieldname-username-c: _username
+  fieldname-password-c: _password
