@@ -91,22 +91,22 @@ func setEnvironment() {
 
 func summary(cfg *kiosk.Config) {
 	// general
-	log.Println("AutoFit:", cfg.General.AutoFit)
-	log.Println("LXDEEnabled:", cfg.General.LXDEEnabled)
-	log.Println("LXDEHome:", cfg.General.LXDEHome)
-	log.Println("Mode:", cfg.General.Mode)
-	log.Println("WindowPosition:", cfg.General.WindowPosition)
+	log.Println("General.AutoFit:", cfg.General.AutoFit)
+	log.Println("General.LXDEEnabled:", cfg.General.LXDEEnabled)
+	log.Println("General.LXDEHome:", cfg.General.LXDEHome)
+	log.Println("General.Mode:", cfg.General.Mode)
+	log.Println("General.WindowPosition:", cfg.General.WindowPosition)
 	// target
-	log.Println("URL:", cfg.Target.URL)
-	log.Println("LoginMethod:", cfg.Target.LoginMethod)
-	log.Println("Username:", cfg.Target.Username)
-	log.Println("Password:", "*redacted*")
-	log.Println("IgnoreCertificateErrors:", cfg.Target.IgnoreCertificateErrors)
-	log.Println("IsPlayList:", cfg.Target.IsPlayList)
+	log.Println("Target.URL:", cfg.Target.URL)
+	log.Println("Target.LoginMethod:", cfg.Target.LoginMethod)
+	log.Println("Target.Username:", cfg.Target.Username)
+	log.Println("Target.Password:", "*redacted*")
+	log.Println("Target.IgnoreCertificateErrors:", cfg.Target.IgnoreCertificateErrors)
+	log.Println("Target.IsPlayList:", cfg.Target.IsPlayList)
 	// goauth
-	log.Println("Fieldname Username:", cfg.GOAUTH.AutoLogin)
-	log.Println("Fieldname Username:", cfg.GOAUTH.UsernameField)
-	log.Println("Fieldname Password:", cfg.GOAUTH.PasswordField)
+	log.Println("GOAUTH.Fieldname Autologin:", cfg.GOAUTH.AutoLogin)
+	log.Println("GOAUTH.Fieldname Username:", cfg.GOAUTH.UsernameField)
+	log.Println("GOAUTH.Fieldname Password:", cfg.GOAUTH.PasswordField)
 }
 
 func main() {
@@ -145,7 +145,6 @@ func main() {
 		cfg.GOAUTH.UsernameField = args.UsernameField
 		cfg.GOAUTH.PasswordField = args.PasswordField
 	}
-	summary(&cfg)
 	// make sure the url has content
 	if cfg.Target.URL == "" {
 		os.Exit(1)
